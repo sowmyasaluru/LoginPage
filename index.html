@@ -1,0 +1,94 @@
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'arial', sans-serif;
+            background-color: rgb(18, 18, 18);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        form {
+            background-color: black;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgb(191, 191, 247);
+            width: 300px;
+            text-align: center;
+            transition: box-shadow 0.5s ease-in;
+        }
+
+            form:hover {
+                box-shadow: 0 0 30px rgb(191, 191, 247);
+            }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            background-color: lavender;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: black;
+            color: rgb(191, 191, 247);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                color: black;
+                background-color: rgb(191, 191, 247);
+            }
+
+        a {
+            color: rgb(159, 159, 255);
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        h1 {
+            color: rgb(191, 191, 247);
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="successful.html">
+        <h1>Login</h1>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Log in</button>
+        <br><br>
+        Don't have an account? <a href="register.html">Register</a><br /><br />
+        Here is my <a href="cv.html">CV</a>
+    </form>
+</body>
+</html>

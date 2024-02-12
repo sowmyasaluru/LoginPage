@@ -1,0 +1,75 @@
+//write a c++ program to schedule the processes using first come first serve scheduling. 
+#include<iostream>
+using namespace std;
+
+struct Process {
+    int processId;
+    int arrivalTime;
+    int burstTime;
+};
+
+void calculateCompletionTime(Process processes[], int n, int completionTime[], int responseTime[]) {
+    int currentTime = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (currentTime < processes[i].arrivalTime) {
+            currentTime = processes[i].arrivalTime;
+        }
+
+        responseTime[i] = currentTime - processes[i].arrivalTime; // Calculate response time
+        currentTime += processes[i].burstTime;
+        completionTime[i] = currentTime;
+    }
+}
+
+void calculateTurnaroundTime(Process processes[], int n, int completionTime[], int turnaroundTime[]) {
+    for (int i = 0; i < n; i++) {
+        turnaroundTime[i] = completionTime[i] - processes[i].arrivalTime;
+    }
+}
+
+void calculateWaitingTime(Process processes[], int n, int turnaroundTime[], int waitingTime[]) {
+    for (int i = 0; i < n; i++) {
+        waitingTime[i] = turnaroundTime[i] - processes[i].burstTime;
+    }
+}
+
+void displayResults(Process processes[], int n, int completionTime[], int turnaroundTime[], int waitingTime[], int responseTime[]) {
+    cout << "Process\tArrival Time\tBurst Time\tCompletion Time\tTurnaround Time\tWaiting Time\tResponse Time\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << processes[i].processId << "\t\t" << processes[i].arrivalTime << "\t\t"
+             << processes[i].burstTime << "\t\t" << completionTime[i] << "\t\t"
+             << turnaroundTime[i] << "\t\t" << waitingTime[i] << "\t\t" << responseTime[i] << "\n";
+    }
+}
+
+int main() {
+    int n;
+
+    cout << "Enter the number of processes: ";
+    cin >> n;
+
+    Process processes[n];
+    int completionTime[n];
+    int turnaroundTime[n];
+    int waitingTime[n];
+    int responseTime[n];
+
+    cout << "Enter the details of each process:\n";
+    for (int i = 0; i < n; i++) {
+        processes[i].processId = i + 1;
+        cout << "Process " << processes[i].processId << " Arrival Time: ";
+        cin >> processes[i].arrivalTime;
+        cout << "Process " << processes[i].processId << " Burst Time: ";
+        cin >> processes[i].burstTime;
+    }
+
+    calculateCompletionTime(processes, n, completionTime, responseTime);
+    calculateTurnaroundTime(processes, n, completionTime, turnaroundTime);
+    calculateWaitingTime(processes, n, turnaroundTime, waitingTime);
+
+    displayResults(processes, n, completionTime, turnaroundTime, waitingTime, responseTime);
+
+    return 0;
+}

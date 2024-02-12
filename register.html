@@ -1,0 +1,145 @@
+<!--register.html-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: 'arial', sans-serif;
+            background-color: rgb(18, 18, 18);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        form {
+            background-color: black;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgb(191, 191, 247);
+            width: 350px;
+            text-align: center;
+            transition: box-shadow 0.5s ease-in;
+        }
+
+            form:hover {
+                box-shadow: 0 0 30px rgb(191, 191, 247);
+            }
+
+        label {
+            text-align: left;
+            display: block;
+            margin: 10px;
+            margin-left: 18px;
+            font-size: 16px;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid lavender;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        select {
+            background-color: lavender;
+        }
+
+        button {
+            background-color: black;
+            color: rgb(191, 191, 247);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                color: black;
+                background-color: rgb(191, 191, 247);
+            }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+            margin-top: 4px;
+        }
+
+        a {
+            color: rgb(159, 159, 255);
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        h1 {
+            color: rgb(191, 191, 247);
+        }
+    </style>
+</head>
+<body>
+    <form method="post" onsubmit="return validateForm()">
+        <h1>Register</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <small class="error-message" id="username-error"></small>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <small class="error-message" id="email-error"></small>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <small class="error-message" id="password-error"></small>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        <small class="error-message" id="confirm-password-error"></small>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <small class="error-message" id="gender-error"></small>
+        <br><br>
+        <button type="submit">Register</button><br><br>
+        Already have an account? <a href="index.html">Log in</a>
+    </form>
+    <script>function validateForm() {
+                var usernameRegex = /^[a-zA-Z0-9]+$/;
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var passwordRegex = /.{6,}/;
+
+                var username = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+                var confirmPassword = document.getElementById("confirm_password").value;
+                var gender = document.getElementById("gender").value;
+
+                document.getElementById("username-error").innerHTML = !username.match(usernameRegex) ? alert("Invalid username" ): "";
+                document.getElementById("email-error").innerHTML = !email.match(emailRegex) ? "Invalid email address" : "";
+                document.getElementById("password-error").innerHTML = !password.match(passwordRegex) ? "Password must be at least 6 characters" : "";
+                document.getElementById("confirm-password-error").innerHTML = password !== confirmPassword ? "Passwords do not match" : "";
+                document.getElementById("gender-error").innerHTML = gender === "" ? "Please select a gender" : "";
+
+                return (
+                    username.match(usernameRegex) &&
+                    email.match(emailRegex) &&
+                    password.match(passwordRegex) &&
+                    password === confirmPassword &&
+                    gender !== ""
+                );
+            }</script>
+</body>
+</html>
